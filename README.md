@@ -1,0 +1,2 @@
+# gizmosoft.CustomerApp
+WinUI playground
