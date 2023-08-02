@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Gizmosoft.CustomerApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Gizmosoft.CustomerApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
