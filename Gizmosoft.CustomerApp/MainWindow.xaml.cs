@@ -1,3 +1,5 @@
+using Gizmosoft.CustomerApp.Data;
+using Gizmosoft.CustomerApp.ViewModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -12,7 +14,16 @@ namespace Gizmosoft.CustomerApp
         {
             this.InitializeComponent();
             Title = "Customers App";
+            ViewModel = new MainViewModel(new CustomerDataProvider());
+            root.Loaded += Root_Loaded;
         }
+
+        private async void Root_Loaded(object sender, RoutedEventArgs e)
+        {
+            await ViewModel.LoadAsync();    
+        }
+
+        public MainViewModel ViewModel { get; }
 
         private void ButtonMoveNavigation_OnClick(object sender, RoutedEventArgs e)
         {
