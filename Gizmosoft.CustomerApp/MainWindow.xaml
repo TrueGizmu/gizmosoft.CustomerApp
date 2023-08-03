@@ -8,7 +8,58 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
-        <Button x:Name="btnAddCustomer" Content="Add customer" Click="ButtonAddCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10"/>
+    <Grid RowDefinitions="Auto, *, Auto" ColumnDefinitions="Auto, *, Auto" Background="#222222">
+
+        <!--Header-->
+        <Grid Grid.ColumnSpan="3" Background="#F05A28">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Source="/Images/logo.png" Width="100" Margin="5"/>
+                <TextBlock Text="Customers App" FontSize="30" 
+                           Foreground="White" VerticalAlignment="Center"/>
+                <TextBlock Text="Version 1.0" FontSize="16"
+                           Foreground="#333333" VerticalAlignment="Bottom" 
+                           Margin="10,0,0,22"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Customer list -->
+        <Grid x:Name="customerListGrid" Grid.Row="1" RowDefinitions="Auto,*" Background="#333333" MaxWidth="250">
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Button Margin="10">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="AddFriend"/>
+                        <TextBlock Text="Add" Margin="5 0 0 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Margin="0 10 10 10">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Delete"/>
+                        <TextBlock Text="Delete" Margin="5 0 0 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Margin="0 10 10 10" Click="ButtonMoveNavigation_OnClick">
+                    <SymbolIcon x:Name="navigationSymbolIcon" Symbol="Forward"/>
+                </Button>
+            </StackPanel>
+            <ListView Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollMode="Enabled">
+                <ListViewItem>Julia</ListViewItem>
+                <ListViewItem>Alex</ListViewItem>
+                <ListViewItem>Thomas</ListViewItem>
+            </ListView>
+        </Grid>
+
+        <!-- Customer detail -->
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+            <TextBox Header="Firstname" />
+            <TextBox Header="Lastname" Margin="0,10,0,0"/>
+            <CheckBox Margin="0 20 0 0">
+                Is developer
+            </CheckBox>
+        </StackPanel>
+
+        <!-- Statusbar -->
+        <Border Grid.Row="2" Grid.ColumnSpan="3" Background="#444">
+            <TextBlock Text=" (c) Wired Brain Coffee" Foreground="White" Margin="5"/>
+        </Border>
     </Grid>
 </Window>
