@@ -1,4 +1,3 @@
-using Gizmosoft.CustomerApp.Data;
 using Gizmosoft.CustomerApp.ViewModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -10,11 +9,11 @@ namespace Gizmosoft.CustomerApp
 {
     public sealed partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(MainViewModel viewModel)
         {
             this.InitializeComponent();
             Title = "Customers App";
-            ViewModel = new MainViewModel(new CustomerDataProvider());
+            ViewModel = viewModel;
             root.Loaded += Root_Loaded;
         }
 
