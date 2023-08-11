@@ -9,7 +9,16 @@
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
                 <!-- Other merged dictionaries here -->
+                <ResourceDictionary Source="Resources/Brushes.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="NavigationBackgroundBrush" Color="#333333"/>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="NavigationBackgroundBrush" Color="#BBBBBB"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
             <!-- Other app resources here -->
         </ResourceDictionary>
     </Application.Resources>

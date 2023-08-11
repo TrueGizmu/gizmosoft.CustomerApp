@@ -6,15 +6,31 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Gizmosoft.CustomerApp.Controls"
+    xmlns:viewModel="using:Gizmosoft.CustomerApp.ViewModel"
     mc:Ignorable="d">
 
-    <Grid x:Name="root" RowDefinitions="Auto, *, Auto" ColumnDefinitions="Auto, *, Auto" Background="#222222">
+    <Grid x:Name="root" RowDefinitions="Auto, *, Auto" ColumnDefinitions="Auto, *, Auto" 
+          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          RequestedTheme="Dark">
+        <Grid.Resources>
+            <DataTemplate x:Name="customerDataTemplate" x:DataType="viewModel:CustomerItemViewModel">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{x:Bind FirstName, Mode=OneWay}" FontWeight="Bold"/>
+                    <TextBlock Text="{x:Bind LastName, Mode=OneWay}" Margin="5,0,0,0"/>
+                    <TextBlock Text="(Dev)" Margin="5,0,0,0" Opacity=".5" 
+                               Visibility="{x:Bind IsDeveloper, Mode=OneWay}"/>
+                </StackPanel>
+            </DataTemplate>
+        </Grid.Resources>
 
         <!--Header-->
         <controls:HeaderControl Grid.ColumnSpan="3"/>
 
+        <Button Grid.ColumnSpan="3" Content="Toggle theme" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                Margin="10" Click="ButtonToggleTheme_OnClick"/>
+
         <!-- Customer list -->
-        <Grid x:Name="customerListGrid" Grid.Row="1" RowDefinitions="Auto,*" Background="#333333" MaxWidth="250">
+        <Grid x:Name="customerListGrid" Grid.Row="1" RowDefinitions="Auto,*" Background="{ThemeResource NavigationBackgroundBrush}" MaxWidth="250">
             <StackPanel Grid.Row="0" Orientation="Horizontal">
                 <Button Margin="10" Command="{x:Bind ViewModel.AddCustomerCommand}">
                     <StackPanel Orientation="Horizontal">
@@ -34,9 +50,10 @@
             </StackPanel>
             <ListView Grid.Row="1" ItemsSource="{x:Bind ViewModel.Customers, Mode=OneWay}"
                       SelectedItem="{x:Bind ViewModel.SelectedCustomer, Mode=TwoWay}"
-                      DisplayMemberPath="FirstName"
+                      ItemTemplate="{StaticResource customerDataTemplate}"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto" 
                       ScrollViewer.HorizontalScrollMode="Enabled"/>
+
         </Grid>
 
         <!-- Customer detail -->

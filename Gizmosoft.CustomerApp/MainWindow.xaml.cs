@@ -32,5 +32,10 @@ namespace Gizmosoft.CustomerApp
             Grid.SetColumn(customerListGrid, newColumn);
             navigationSymbolIcon.Symbol = newColumn == 0 ? Symbol.Forward : Symbol.Back;
         }
+
+        private void ButtonToggleTheme_OnClick(object sender, RoutedEventArgs e)
+        {
+            root.RequestedTheme = root.RequestedTheme == ElementTheme.Light ? ElementTheme.Dark : ElementTheme.Light;
+        }
     }
 }
